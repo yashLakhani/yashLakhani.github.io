@@ -78,15 +78,15 @@ function createAnimatedBar(){
         refreshBarChart(deaths, svgParamMap, defaultCountry);
 
         d3.select("#select-country").on("change", function(){
-            var countryInput = d3.select("#select-country").property("value");
-            refreshBarChart(deaths, svgParamMap, countryInput);
+            var selected = d3.select("#select-country").property("value");
+            refreshBarChart(deaths, svgParamMap, selected);
         })
 
     }).catch(function(err){
         console.log(err);
     })
 
-    function refreshBarChart(data, svgParams, countryInput){
+    function refreshBarChart(data, svgParams, selected){
  
         x = svgParams.get('x');
         y = svgParams.get('y');
@@ -100,7 +100,7 @@ function createAnimatedBar(){
 
  
         x.domain(Array.from(data, function(d){return d.date;}));
-        y.domain([0, d3.max(data, function(d){return +d[countryInput];})]);
+        y.domain([0, d3.max(data, function(d){return +d[selected];})]);
         
         var xAxisCall = d3.axisBottom(x);
         xAxis.transition(t)
@@ -116,7 +116,7 @@ function createAnimatedBar(){
         yAxis.transition(t).call(yAxisCall);
 
         var getX = function(d,i) { return d.date[i];}; 
-        var getY = function(d,i) { return +d[countryInput][i];};
+        var getY = function(d,i) { return +d[selected][i];};
 
         var xMap = function(d) { return xScale(getX(d));}; 
         var yMap = function(d) { return yScale(getY(d));}; 
@@ -126,7 +126,7 @@ function createAnimatedBar(){
         .style("opacity", 0);
 
         var allRects = svg.selectAll("rect").data(Array.from(data, function(d,i){
-            return ("Deaths: " +(d[countryInput] + " ( " + (d.date) + " )" ));}));
+            return ("Deaths: " +(d[selected] + " ( " + (d.date) + " )" ));}));
 
         allRects.exit()
             .attr("y",y(0))
@@ -153,11 +153,9 @@ function createAnimatedBar(){
             .transition(t)
             .attr("x", function(d,i){ return x(data[i].date); })
             .attr("width", x.bandwidth())
-            .attr("y", function(d,i){ return y(+data[i][countryInput]); })
-            .attr("height", function(d,i){ return height- y(+data[i][countryInput]); });
+            .attr("y", function(d,i){ return y(+data[i][selected]); })
+            .attr("height", function(d,i){ return height- y(+data[i][selected]); });
 
-        
-        svg
     }
 }
 
