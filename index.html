@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script src='https://d3js.org/d3.v5.min.js'></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+ 
+<br>
+<div class="container">
+
+  <h1>COVID 19 with D3</h1>
+  <p>Source: <a href="https://github.com/CSSEGISandData/COVID-19">CSSE (John Hopkins)</a>. This data is as of July 29th 2020.</p>  
+
+  <div class="row">
+      <div class="col-md-12 wow fadeIn">
+          <h2>Importance of Population</h2>
+          <hr>
+          <p>Many of you may have heard of the R factor in the context of the coronavirus pandemic that plagues us. 
+            This comes from epidemiology and is known as the effective reproductive number. Each person in the population can be modelled as 
+          a susceptible and non-susceptible host (immune). If R&gt1, the number of cases will increase, such as at the start of an epidemic. Where R=1, the disease is endemic, 
+          and where R&lt1 there will be a decline in the number of cases. R is the exponent of an exponential curve that can determine how quickly the epidemic spreads. 
+          It goes without saying that countries with larger populations would be affected to a greater extent. However, there are other factors at play. 
+          Countries with greater incoming traffic of people (or hosts) either being a popular holiday destination or openess of financial markets making it a business hub could greatly impact the R factor.
+          This lends itself to varying levels of R across countries and most likely will cause clustering in certain continents as we see below.
+        </p> 
+        <p>You can hover over the circles in order to see the values. The circles sizes are weighted by the log deaths. The larger the circle the more deaths.</p>
+          <section id='death-pop-scatter'></section>
+      </div>  
+      <script src="scatterChart.js"></script>
+  </div>
+  <div class="row">
+    <div class="col-md-12 wow fadeIn">
+      <h2>Does Lockdown Really Matter</h2>
+      <hr>
+      <p>To illustrate this point let's make it fair. Let's calculate the logarithm of deaths per capita. This will take into account population. 
+        You can hover over the lines below in order to reveal the country (coloured by their continent, for example European countries are blue). We have some of the highest deaths per capita countries below. 
+        You would expect that countries that enforced an earlier lockdown would have been able to reduce their R factor. However, this is simply not true. 
+        Despite the United Kingdom being more populated than Italy and enforcing a later lockdown their progression is very similar. 
+        Sweden with no lockdown faired better than most of the other European countries. This makes you question how effective a lockdown really is 
+        and whether getting the timing incorrect can actually reduce herd immunity and incur more deaths than without a lockdown. 
+      </p>
+      <div id="multi-series-line"></div>
+    </div>
+    <script src="lineChart.js"></script>
+  </div>
+  <div class="row">
+    <div class="col-md-12 wow fadeIn">
+      <h2>Find Out For Yourself</h2>
+      <hr>
+      <p>Take some time to find some examples where the population hypothesis holds true. Below you can see the total number of deaths till date. 
+        This will give you a better understanding of how bad it really is. After selecting a handful of examples you may notice that in some cases you notice that despite having a large population 
+        the country has not suffered to the extent you would expect. Conversly, you may notice countries that have endured a difficult period without having a claustrophic amount of people in the country. 
+        This means there are other factors at play, a key one being the timing and intensity of each country's lockdown. Countries in Asia have seen this type of epidemic before and were more prepared 
+        in terms of infrastructure as well as more aggresive with their lockdowns as opposed to countries in Europe.</p>
+        <p>Try to guess before using the dropdown to select a country. Hover over the bars in order to see the total deaths and date.</p>
+      Select country:
+      <select id="select-country"></select>
+      <div class='selector-1'></div>
+      <div id="total-deaths-bar"></div>
+      <br>
+    </div>
+    <script src="barChart.js"></script>
+</div>
+</div>
+</body>
