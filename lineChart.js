@@ -148,8 +148,6 @@ function createLineChart(){
                 .append("xhtml:body")
                 .style("font", "14px 'Arial'")
                 .html("<p>No Lockdown (Sweden)&#8595;</p>");
-
-
     }
 }
 
