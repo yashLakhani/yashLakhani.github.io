@@ -46,7 +46,7 @@ function createLineChart(){
 
         var continents = {'United Kingdom': 'Europe', 'Spain': 'Europe', 'France': 'Europe',
                         'Italy':'Europe', 'Belgium':'Europe', 'Brazil':'South America', 'Sweden':'Europe', 
-                        'Netherlands':'Europe', 'Mexico': 'North America', 'Canada':'Mexico'}
+                        'Netherlands':'Europe', 'Mexico': 'North America', 'Canada':'North America'}
         
        
         var contColour = {'Europe': 'orange', 'North America': 'red', 'South America':'purple'}
