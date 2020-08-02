@@ -47,7 +47,9 @@ function createLineChart(){
         var continents = {'United Kingdom': 'Europe', 'Spain': 'Europe', 'France': 'Europe',
                         'Italy':'Europe', 'Belgium':'Europe', 'Brazil':'South America', 'Sweden':'Europe', 
                         'Netherlands':'Europe', 'Mexico': 'North America', 'Canada':'Mexico'}
-
+        
+       
+        var contColour = {'Europe': 'orange', 'North America': 'red', 'South America':'purple'}
 
         var deathsMap = countries.map( function(group) { 
             return {
@@ -61,13 +63,13 @@ function createLineChart(){
 
           console.log(deathsMap);
 
-          plotLineChart(deathsMap, deaths)
+          plotLineChart(deathsMap, deaths, contColour)
 
     }).catch(function(err){
         console.log(err);
     })
 
-    function plotLineChart(slicedData, data){
+    function plotLineChart(slicedData, data, contColour){
         var xScale = d3.scaleTime().range([0,width]);
         var yScale = d3.scaleLinear().rangeRound([height, 0]);
         xScale.domain(d3.extent(data, function(d){ return  parseTime(d.date)}));
@@ -103,7 +105,7 @@ function createLineChart(){
         lines.append("path")
         .attr("d", function(d) { return line(d.values); })
         .style('fill', 'none')
-        .style("stroke", function(d){ return color(d.continent); })
+        .style("stroke", function(d){ return contColour[d.continent]; })
         .style("stroke-dasharray", ("3, 3"))
         .style('stroke-width', '3.5px');  
 
