@@ -49,7 +49,7 @@ function createLineChart(){
                         'Netherlands':'Europe', 'Mexico': 'North America', 'Canada':'North America'}
         
        
-        var contColour = {'Europe': 'orange', 'North America': 'red', 'South America':'purple'}
+        var contColour = {'Europe': 'darkorange', 'North America': 'crimson', 'South America':'mediumpurple'}
 
         var deathsMap = countries.map( function(group) { 
             return {
